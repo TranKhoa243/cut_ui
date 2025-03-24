@@ -1,0 +1,6 @@
+{
+  "name_api": {
+    "endpoint": "/endpoint",
+    "method": "post"
+  }
+}
