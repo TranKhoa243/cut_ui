@@ -22,7 +22,6 @@ import 'package:flutter_base_structure/presentation/utils/push_notification_hand
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 
-// import '../presentation/page/splash/index.dart';
 
 late ApplicationBloc appBloc;
 
@@ -85,8 +84,8 @@ class MyAppState extends State<MyApp> {
 class AppEntry {
   runWithFlavor({required EnviromentFlavor flavor}) async {
     WidgetsFlutterBinding.ensureInitialized();
-    Bloc.observer = blocMonitorDelegate;
-    HttpOverrides.global = MyHttpOverrides();
+    Bloc.observer = blocMonitorDelegate;/// quản lý vòng đòi của bloc
+    HttpOverrides.global = MyHttpOverrides();///cấu hình các http
     _setupBackgrounNofication();
 
     // await Firebase.initializeApp();

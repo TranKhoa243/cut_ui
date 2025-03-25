@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppImages {
+  static const icHome2 = 'assets/images/svg/home.svg';
+  static const icMap = 'assets/images/svg/map.svg';
+  static const icShop = 'assets/images/svg/shopping_cart.svg';
+  static const icMember = 'assets/images/svg/member.svg';
+  static const icBox = 'assets/images/svg/box.svg';
+
   static const icAppLogo = 'assets/images/ic_app_logo.png';
   static const icAppLogoWhite = 'assets/images/ic_logo_white.svg';
   static const icShowPassword = 'assets/images/ic_show_password.svg';
