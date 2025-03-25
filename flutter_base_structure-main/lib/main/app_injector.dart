@@ -15,6 +15,11 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 GetIt injector = GetIt.asNewInstance();
 initInjector(){
   // Utils
+  injector.registerFactory<LocalDataStorage>(() => SharePreferenceStorageImpl());
+  injector.registerLazySingleton<SettingCache>(
+        () => SettingCacheImpl(injector<LocalDataStorage>()),
+  );/// đăng ký trước
+
   injector.registerLazySingleton<InternetConnectionChecker>(
           () => InternetConnectionChecker());
   injector.registerLazySingleton<Connectivity>(() => Connectivity());
@@ -44,8 +49,6 @@ initInjector(){
       injector(),
   ));
   // Cache
-  injector
-      .registerFactory<LocalDataStorage>(() => SharePreferenceStorageImpl());
   injector
       .registerLazySingleton<AuthenCache>(() => AuthenCacheImpl(injector()));
   injector.registerLazySingleton<UserDataCache>(
