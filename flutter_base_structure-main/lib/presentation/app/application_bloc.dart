@@ -27,7 +27,7 @@ class ApplicationBloc extends BaseBloc<ApplicationEvent, ApplicationState> {
       //   required this.settingCache
       }
       )
-      : super(initState: ApplicationState(tag: AppLaunchTag.splash)) {
+      : super(initState: ApplicationState(tag: AppLaunchTag.main)) {
     on<AppLaunched>(_onAppLaunchHandler);
     // on<LoginSuccessEvent>(_onLoginSuccessHandler);
     // on<AccessTokenExpiredEvent>(_onAccessTokenExpiredHandler);

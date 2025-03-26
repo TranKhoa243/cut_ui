@@ -6,10 +6,11 @@ import 'package:flutter_base_structure/presentation/base/base_state.dart';
 import 'package:flutter_base_structure/presentation/page/home/home_bloc.dart';
 import 'package:flutter_base_structure/presentation/page/home/home_router.dart';
 import 'package:flutter_base_structure/presentation/page/home/home_state.dart';
+import 'package:flutter_base_structure/presentation/page/home/item/device_utils.dart';
 import 'package:flutter_base_structure/presentation/page/splash/index.dart';
 import 'package:flutter_base_structure/presentation/resources/icons/app_images.dart';
 import 'package:gap/gap.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 class HomePage extends BasePage {
 
    const HomePage({super.key, required super.tag});
@@ -27,7 +28,7 @@ class _HomePageState extends BasePageState<
   final Map<int, Widget> _tabCache = {};
 
   Widget _getTab(int index) {
-    _tabCache.putIfAbsent(index, () => SplashPage());
+    _tabCache.putIfAbsent(index, () => Text('Tap $index'));
     return _tabCache[index]!;
   }
 
@@ -81,8 +82,8 @@ class _HomePageState extends BasePageState<
         children: [
           // Container(
           //   height: 2,
-          //   width: DeviceUtils.size.width/5,
-          //   margin: const EdgeInsets.only(bottom: 4),
+          //   width: DeviceUtils.size.width/6,
+          //   margin: const EdgeInsets.only(bottom: 1),
           //   decoration: BoxDecoration(
           //     color: isSelected ? Colors.red : Colors.transparent,
           //   ),
@@ -90,16 +91,14 @@ class _HomePageState extends BasePageState<
           SizedBox(
             height: 24,
             width: 24,
-            child: isSelected
-                ? ColorFiltered(
-              colorFilter: const ColorFilter.mode(
-                  Colors.red, BlendMode.srcIn),
-              child: Image.asset(
+            child: ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                  isSelected?Colors.red:Colors.black45, BlendMode.srcIn),
+              child: SvgPicture.asset(
                 assets,
                 fit: BoxFit.contain,
               ),
-            )
-                : Gap(0),
+            ),
           ),
           const Gap(2),
           Text(
@@ -120,68 +119,65 @@ class _HomePageState extends BasePageState<
       BuildContext context, BaseBloc<BaseEvent, BaseState> bloc) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        return SafeArea(
-            child: Scaffold(
-              body: IndexedStack(
-                index: _selectedIndex,
-                children: List.generate(5, (index) => _getTab(index)),
-              ),
-
-              bottomNavigationBar: Container(
-                color: Colors.transparent,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Gap(20),
-                    BottomAppBar(
-                      shape: const CircularNotchedRectangle(),
-                      color: Colors.white,
-                      elevation: 0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          _buildBTNav(
-                            title: "Trang chủ",
-                            assets: AppImages.icHome2,
-                            index: 0,
-                            isSelected: _selectedIndex == 0,
-                            onTap: () => _onItemTapped(0),
-                          ),
-                          _buildBTNav(
-                            title: "Địa điểm",
-                            assets: AppImages.icMap,
-                            index: 1,
-                            isSelected: _selectedIndex == 1,
-                            onTap: () => _onItemTapped(1),
-                          ),
-                          _buildBTNav(
-                            title: "Cửa hàng",
-                            assets: AppImages.icShop,
-                            index: 2,
-                            isSelected: _selectedIndex == 2,
-                            onTap: () => _onItemTapped(2),
-                          ),
-                          _buildBTNav(
-                            title: "Membership",
-                            assets: AppImages.icMember,
-                            index: 3,
-                            isSelected: _selectedIndex == 3,
-                            onTap: () => _onItemTapped(3),
-                          ),
-                          _buildBTNav(
-                            title: "Contrast Box",
-                            assets: AppImages.icBox,
-                            index: 4,
-                            isSelected: _selectedIndex == 4,
-                            onTap: () => _onItemTapped(4),
-                          ),
-                        ],
+        return Scaffold(
+          body: IndexedStack(
+            index: _selectedIndex,
+            children: List.generate(5, (index) => _getTab(index)),
+          ),
+          bottomNavigationBar: Container(
+            color: Colors.transparent,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                BottomAppBar(
+                  shape: const CircularNotchedRectangle(),
+                  color: Colors.white,
+                  elevation: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildBTNav(
+                        title: "Trang chủ",
+                        assets: AppImages.icHome2,
+                        index: 0,
+                        isSelected: _selectedIndex == 0,
+                        onTap: () => _onItemTapped(0),
                       ),
-                    ),
-                  ],
+                      _buildBTNav(
+                        title: "Địa điểm",
+                        assets: AppImages.icMap,
+                        index: 1,
+                        isSelected: _selectedIndex == 1,
+                        onTap: () => _onItemTapped(1),
+                      ),
+                      _buildBTNav(
+                        title: "Cửa hàng",
+                        assets: AppImages.icShop,
+                        index: 2,
+                        isSelected: _selectedIndex == 2,
+                        onTap: () => _onItemTapped(2),
+                      ),
+                      _buildBTNav(
+                        title: "Membership",
+                        assets: AppImages.icMember,
+                        index: 3,
+                        isSelected: _selectedIndex == 3,
+                        onTap: () => _onItemTapped(3),
+                      ),
+                      _buildBTNav(
+                        title: "Contrast Box",
+                        assets: AppImages.icBox,
+                        index: 4,
+                        isSelected: _selectedIndex == 4,
+                        onTap: () => _onItemTapped(4),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ));
+              ],
+            ),
+          ),
+        );
       },
     );
   }
