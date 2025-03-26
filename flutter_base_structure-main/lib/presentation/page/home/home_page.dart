@@ -6,11 +6,11 @@ import 'package:flutter_base_structure/presentation/base/base_state.dart';
 import 'package:flutter_base_structure/presentation/page/home/home_bloc.dart';
 import 'package:flutter_base_structure/presentation/page/home/home_router.dart';
 import 'package:flutter_base_structure/presentation/page/home/home_state.dart';
-import 'package:flutter_base_structure/presentation/page/home/item/device_utils.dart';
-import 'package:flutter_base_structure/presentation/page/splash/index.dart';
 import 'package:flutter_base_structure/presentation/resources/icons/app_images.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'item/home_tab.dart';
 class HomePage extends BasePage {
 
    const HomePage({super.key, required super.tag});
@@ -25,12 +25,24 @@ class _HomePageState extends BasePageState<
     HomePage,
     HomeRouter> {
   int _selectedIndex = 0;
-  final Map<int, Widget> _tabCache = {};
 
   Widget _getTab(int index) {
-    _tabCache.putIfAbsent(index, () => Text('Tap $index'));
-    return _tabCache[index]!;
+      switch (index) {
+        case 0:
+          return const HomeTab();
+        case 1:
+          return const Icon(Icons.home);
+        case 2:
+          return const ElevatedButton(onPressed: null, child: Text('Button'));
+        case 3:
+          return const CircularProgressIndicator();
+        case 4:
+          return const FlutterLogo(size: 40);
+        default:
+          return const Text('Default Tab');
+      }
   }
+
 
   void _onItemTapped(int index) {
     setState(() {

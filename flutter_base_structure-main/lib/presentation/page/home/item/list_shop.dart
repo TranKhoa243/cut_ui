@@ -1,8 +1,9 @@
-import 'package:driver_app/common/component/image/image_cache_network.dart';
-import 'package:driver_app/common/extension/list_extension.dart';
-import 'package:driver_app/common/utils/device_utils.dart';
-import 'package:driver_app/generated/assets.gen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base_structure/presentation/page/home/item/device_utils.dart';
+import 'package:flutter_base_structure/presentation/page/home/item/list_extension.dart';
+import 'package:flutter_base_structure/presentation/resources/icons/app_images.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 class ListShop extends StatelessWidget {
@@ -30,9 +31,14 @@ class ListShop extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
             ),
-            child: ImageCacheNetwork(
-              urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSap6Gltpm6lU-FLnq1F-hnyHmcK9QbDzOhDw&s',
-              boxFit: BoxFit.fill,
+            child:
+            CachedNetworkImage(
+              imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSap6Gltpm6lU-FLnq1F-hnyHmcK9QbDzOhDw&s",
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              width: DeviceUtils.size.width * 226 / 375,
+              height: 126,
+              fit: BoxFit.fill,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
           Positioned(
@@ -47,11 +53,13 @@ class ListShop extends StatelessWidget {
               ),
               child: Center(
                 child: SizedBox(
-                    height:16,width:16,child: Assets.icons.navigation.svg())
-              ),
+                    height:16,width:16,child: SvgPicture.asset(
+                  AppImages.icNavigation,
+                  fit: BoxFit.cover,
+                )))
             ),
           ),
-          Positioned(
+          const Positioned(
               left: 10,
               bottom: 10,
               child: Column(

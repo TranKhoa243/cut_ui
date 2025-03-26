@@ -1,27 +1,24 @@
-import 'package:driver_app/common/app/theme/device_constants.dart';
-import 'package:driver_app/common/component/image/image_cache_network.dart';
-import 'package:driver_app/common/constants/app_constants.dart';
-import 'package:driver_app/common/routes/app_routes.dart';
-import 'package:driver_app/common/utils/device_utils.dart';
-import 'package:driver_app/features/home/item/new_page.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_base_structure/presentation/page/home/item/device_utils.dart';
+import 'package:flutter_base_structure/presentation/resources/icons/app_images.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
+import 'advertisement_widget.dart';
+import 'chevron_divider.dart';
+import 'list_shop.dart';
+import 'new_page.dart';
 
-import '../../generated/assets.gen.dart';
-import 'item/advertisement_widget.dart';
-import 'item/list_shop.dart';
 
-class HomeMenuPage extends StatelessWidget {
-  const HomeMenuPage({super.key});
+class HomeTab extends StatelessWidget {
+  const HomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: Color(0xFFFCFCFC),
-        padding: EdgeInsets.fromLTRB(AppConstant.paddingHorizontal, DeviceUtils.padding.top, AppConstant.paddingHorizontal, 0),
+        color: const Color(0xFFFCFCFC),
+        padding: EdgeInsets.fromLTRB(16, DeviceUtils.padding.top, 16, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -36,15 +33,18 @@ class HomeMenuPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
                       ),
-                      child: const ClipOval(
-                        child: ImageCacheNetwork(
-                          urlImage:
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjDGMp734S91sDuUFqL51_xRTXS15iiRoHew&s",
-                          width: 41,
-                          boxFit: BoxFit.cover,
-                          height: 41,
-                        ),
+                      child: ClipOval(
+                        child: CachedNetworkImage(
+                        imageUrl:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjDGMp734S91sDuUFqL51_xRTXS15iiRoHew&s",
+                        width: 41,
+                        height: 41,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => const CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
                       ),
+
+      ),
                     ),
                     const Gap(15),
                     const Column(
@@ -61,7 +61,7 @@ class HomeMenuPage extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-      
+
                       },
                       child: Container(
                         padding: const EdgeInsets.all(4),
@@ -69,16 +69,16 @@ class HomeMenuPage extends StatelessWidget {
                             height: 28,
                             width: 28,
                             child: Center(
-                              child: Assets.icons.ticketStar.svg(),
+                              child: SvgPicture.asset(
+                                AppImages.icTicketStar,
+                                fit: BoxFit.contain,
+                              ),
                             )),
                       ),
                     ),
-                    Gap(8),
+                    const Gap(8),
                     InkWell(
                       onTap: () {
-                        context.push(
-                          Routes.notification,
-                        );
                       },
                       child: Container(
                         padding: const EdgeInsets.all(4),
@@ -86,7 +86,10 @@ class HomeMenuPage extends StatelessWidget {
                             height: 28,
                             width: 28,
                             child: Center(
-                              child: Assets.icons.notification.svg(),
+                              child: SvgPicture.asset(
+                                AppImages.icNotification,
+                                fit: BoxFit.contain,
+                              ),
                             )),
                       ),
                     )
@@ -96,16 +99,16 @@ class HomeMenuPage extends StatelessWidget {
             ),
             const Gap(16.5),
             SizedBox(
-              width: DeviceUtils.size.width,
+                width: DeviceUtils.size.width,
                 child: const ChevronDivider()),
-            Gap(10),
+            const Gap(10),
             IntrinsicHeight(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.fromLTRB(16, 6, 0, 6),
+                      padding: const EdgeInsets.fromLTRB(16, 6, 0, 6),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
                         color: Colors.black,
@@ -114,13 +117,13 @@ class HomeMenuPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center, // Căn giữa nội dung theo chiều dọc
                         children: [
-                          Text(
+                          const Text(
                             'Ví của tôi',
                             style: TextStyle(color: Colors.white, fontSize: 14),
                           ),
                           Row(
                             children: [
-                              Text(
+                              const Text(
                                 'đ 8,656.60',
                                 style: TextStyle(color: Colors.white, fontSize: 20),
                               ),
@@ -128,7 +131,10 @@ class HomeMenuPage extends StatelessWidget {
                                 height: 16,
                                 width: 16,
                                 child: Center(
-                                  child: Assets.icons.arrowRight2.svg(),
+                                  child: SvgPicture.asset(
+                                    AppImages.icArrowRight2,
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
                             ],
@@ -137,10 +143,10 @@ class HomeMenuPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Gap(8),
+                  const Gap(8),
                   Container(
-                  height: double.infinity,
-                    padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                    height: double.infinity,
+                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       color: Colors.red,
@@ -153,10 +159,13 @@ class HomeMenuPage extends StatelessWidget {
                           height: 24,
                           width: 24,
                           child: Center(
-                            child: Assets.icons.add.svg(color: Colors.white),
+                            child: SvgPicture.asset(
+                              AppImages.icAdd,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Nạp tiền',
                           style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
@@ -164,31 +173,32 @@ class HomeMenuPage extends StatelessWidget {
                     ),
                   ),
                 ],
+
               ),
             ),
-            Gap(16),
-            AdvertisementWidget(),
-            Gap(16),
-            Text('Sự kiện đang diễn ra'),
-            Gap(8),
-            SizedBox(
+            const Gap(16),
+            const AdvertisementWidget(),
+            const Gap(16),
+            const Text('Sự kiện đang diễn ra'),
+            const Gap(8),
+            const SizedBox(
                 height:225,child: EventListView()),
-            Gap(17.5),
-            Row(
+            const Gap(17.5),
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-              Text('Danh sách cửa hàng'),Text('Xem tất cả'),
-            ],),
-            Gap(15.5),
-            SizedBox(  height:160,child: ListShop()),
-            Gap(32),
+                Text('Danh sách cửa hàng'),Text('Xem tất cả'),
+              ],),
+            const Gap(15.5),
+            const SizedBox(  height:160,child: ListShop()),
+            const Gap(32),
             Align(
               alignment: Alignment.center,
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(4),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color.fromRGBO(41, 45, 50, 0.1),
                       offset: Offset(0, 8),
@@ -197,7 +207,7 @@ class HomeMenuPage extends StatelessWidget {
                   ],
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(12), // Thêm padding nếu cần
+                  padding: const EdgeInsets.all(12), // Thêm padding nếu cần
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -207,62 +217,23 @@ class HomeMenuPage extends StatelessWidget {
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.red),
                           child: Center(
                             child: SizedBox(height: 16,
-                                width: 16,child: Assets.icons.smsEdit.svg()),
+                                width: 16,child: SvgPicture.asset(
+                                AppImages.icSmsEdit,
+                                fit: BoxFit.contain,
+                              ),),
                           )),
-                      Gap(8),
-                      Text('Phản hồi')
+                      const Gap(8),
+                      const Text('Phản hồi')
                     ],
                   ),
                 ),
               ),
-              
+
             ),
-            Gap(37)
+            const Gap(37)
           ],
         ),
       ),
     );
   }
 }
-class ChevronDivider extends StatelessWidget {
-  const ChevronDivider({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 20,
-      child: CustomPaint(
-        painter: ChevronPainter(),
-      ),
-    );
-  }
-}
-
-class ChevronPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Vẽ nền màu F6F6F6
-    Paint backgroundPaint = Paint()..color = Color(0xFFF6F6F6);
-    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), backgroundPaint);
-
-    // Vẽ đường kẻ hình chữ V
-    Paint paint = Paint()
-      ..color = Color(0xFFF6F6F6) // Màu của đường kẻ
-      ..strokeWidth = 1 // Độ dày của đường kẻ
-      ..style = PaintingStyle.stroke;
-
-    Path path = Path();
-    double midX = size.width / 2;
-    double midY = size.height;
-
-    path.moveTo(0, 0); // Bên trái trên
-    path.lineTo(midX, midY); // Đỉnh giữa
-    path.lineTo(size.width, 0); // Bên phải trên
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
-}
-

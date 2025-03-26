@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base_structure/presentation/resources/icons/app_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../../../../common/component/data_is_empty/data_is_empty.dart';
 
 class AdvertisementWidget extends StatefulWidget {
   const AdvertisementWidget({super.key});
@@ -22,9 +21,9 @@ class _AdvertisementWidgetState extends State<AdvertisementWidget> {
   }
 
   final imagesB = [
-    'assets/images/banner_home1.png',
-    'assets/images/banner_home1.png',
-    'assets/images/banner_home1.png',
+    AppImages.icBannerHome,
+    AppImages.icBannerHome,
+    AppImages.icBannerHome,
   ];
   @override
   void dispose() {
@@ -38,7 +37,7 @@ class _AdvertisementWidgetState extends State<AdvertisementWidget> {
         Stack(
           children: [
             SizedBox(
-              height: 190.h,
+              height: 190,
               width: double.infinity,
               child: PageView.builder(
                 scrollDirection: Axis.horizontal,
@@ -48,13 +47,14 @@ class _AdvertisementWidgetState extends State<AdvertisementWidget> {
                 itemBuilder: (context, i) {
                   return Stack(
                     children: [
-                      Container(
+                      SizedBox(
+                        width: double.infinity,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 2),
                           child: AspectRatio(
                             aspectRatio: 414 / 552,
                             child: GestureDetector(
-                              onTap: () => null,
+                              onTap: () {},
                               child: Image.asset(
                                 imagesB[_currentPage],
                                 fit: BoxFit.fill,
@@ -62,9 +62,8 @@ class _AdvertisementWidgetState extends State<AdvertisementWidget> {
                             ),
                           ),
                         ),
-                        width: double.infinity,
                       ),
-                      Positioned(
+                      const Positioned(
                           bottom: 38,
                           left: 21.5,
                           child: Column(
@@ -88,7 +87,7 @@ class _AdvertisementWidgetState extends State<AdvertisementWidget> {
               child: Align(
                 alignment: Alignment.bottomCenter, // Căn giữa theo chiều ngang và sát đáy
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 10),
                   child: SmoothPageIndicator(
                     controller: _pageController,
                     count: imagesB.length,

@@ -1,7 +1,7 @@
-import 'package:driver_app/common/component/image/image_cache_network.dart';
-import 'package:driver_app/common/extension/list_extension.dart';
-import 'package:driver_app/common/utils/device_utils.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base_structure/presentation/page/home/item/device_utils.dart';
+import 'package:flutter_base_structure/presentation/page/home/item/list_extension.dart';
 import 'package:gap/gap.dart';
 
 class EventListView extends StatelessWidget {
@@ -33,28 +33,30 @@ class EventListView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ImageCacheNetwork(
-                    urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE8IeDwUcPcg2ijYjZwyMnLAQLaZn3KXu-zA&s',
+                  CachedNetworkImage(
+                    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE8IeDwUcPcg2ijYjZwyMnLAQLaZn3KXu-zA&s",
+                    placeholder: (context, url) => CircularProgressIndicator(),
                     width: DeviceUtils.size.width * 226 / 375,
-                    boxFit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     height: 126,
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 10, 8, 6),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(12, 10, 8, 6),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Tặng Sticker chúc mừng ngày Quốc\nKhánh 2-9',
-                          style: const TextStyle(fontSize: 12),
+                          style: TextStyle(fontSize: 12),
                         ),
-                        const Gap(6),
-                        const Text(
+                        Gap(6),
+                        Text(
                           'Diễn ra tại tất cả các cơ sở của Contrast',
                           style: TextStyle(color: Color(0xFF7C7C7C), fontSize: 10),
                         ),
-                        const Gap(12),
-                        const Text(
+                        Gap(12),
+                        Text(
                           'Tìm hiểu thêm ->',
                           style: TextStyle(
                             color: Color(0xFF7C7C7C),
@@ -78,15 +80,15 @@ class EventListView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   color: Colors.white.withOpacity(0.7),
                 ),
-                child: Center(
+                child: const Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text(
+                      Text(
                         '10',
                         style: TextStyle(color: Color(0xFFD91E18), fontSize: 14),
                       ),
-                      const Text(
+                      Text(
                         'TH 6',
                         style: TextStyle(color: Color(0xFFD91E18), fontSize: 10),
                       ),

@@ -8,8 +8,11 @@ import 'package:flutter_base_structure/data/remote/base/index.dart';
 import 'package:flutter_base_structure/data/repository/user_repository_impl.dart';
 import 'package:flutter_base_structure/domain/provider/index.dart';
 import 'package:flutter_base_structure/domain/repository/index.dart';
+import 'package:flutter_base_structure/presentation/base/base_router.dart';
 import 'package:flutter_base_structure/presentation/page/home/home_bloc.dart';
 import 'package:flutter_base_structure/presentation/page/home/home_router.dart';
+import 'package:flutter_base_structure/presentation/page/notification/notification_bloc.dart';
+import 'package:flutter_base_structure/presentation/page/notification/notification_router.dart';
 import 'package:flutter_base_structure/presentation/utils/index.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -20,6 +23,8 @@ initInjector(){
   injector.registerFactory<LocalDataStorage>(() => SharePreferenceStorageImpl());
   injector.registerFactory<HomeBloc>(() => HomeBloc());
   injector.registerLazySingleton<HomeRouter>(() => HomeRouter());
+  injector.registerFactory<NotificationBloc>(() => NotificationBloc());
+  injector.registerLazySingleton<BaseRouter>(() => NotificationRouter());
   injector.registerLazySingleton<SettingCache>(
         () => SettingCacheImpl(injector<LocalDataStorage>()),
   );/// đăng ký trước

@@ -6,6 +6,16 @@ class AppImages {
   static const icShop = 'assets/images/svg/shopping_cart.svg';
   static const icMember = 'assets/images/svg/member.svg';
   static const icBox = 'assets/images/svg/box.svg';
+  static const icNavigation = 'assets/images/svg/navigation.svg';
+  static const icAdd = 'assets/images/svg/add.svg';
+  static const icArrowRight2 = 'assets/images/svg/arrow_right2.svg';
+  static const icNavigation2 = 'assets/images/svg/navigation.svg';
+  static const icSmsEdit = 'assets/images/svg/sms_edit.svg';
+  static const icTicketStar= 'assets/images/svg/ticket_star.svg';
+  static const icBannerHome = 'assets/images/banner_home1.png';
+  static const icChevronLeft = 'assets/images/svg/chevron.left.svg';
+  static const imgEmtyNotification = 'assets/images/emty_notification.png';
+  static const icNotification = 'assets/images/svg/notification.svg';
 
   static const icAppLogo = 'assets/images/ic_app_logo.png';
   static const icAppLogoWhite = 'assets/images/ic_logo_white.svg';

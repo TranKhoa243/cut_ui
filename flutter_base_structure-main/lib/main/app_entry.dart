@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_structure/presentation/page/home/home_page.dart';
 import 'package:flutter_base_structure/presentation/page/home/item/device_utils.dart';
+import 'package:flutter_base_structure/presentation/page/notification/notification_page.dart';
 import 'package:flutter_base_structure/presentation/page/splash/splash_page.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_base_structure/data/local/index.dart';
@@ -61,7 +62,7 @@ class MyAppState extends State<MyApp> {
                   //   pageTag: PageTag.verifyphone,
                   // );
                 case AppLaunchTag.main:
-                  return  HomePage(tag: PageTag.main);
+                  return  const HomePage(tag: PageTag.main);
                 case AppLaunchTag.policy:
                   // return const PolicyPage(
                   //   pageTag: PageTag.policy,
