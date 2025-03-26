@@ -1,0 +1,2 @@
+/Users/longkhongfive/Documents/Project/F19/cut_ui/flutter_base_structure-main/android/app/.cxx/Debug/2h6s3d2y/x86/CMakeFiles/edit_cache.dir
+/Users/longkhongfive/Documents/Project/F19/cut_ui/flutter_base_structure-main/android/app/.cxx/Debug/2h6s3d2y/x86/CMakeFiles/rebuild_cache.dir
