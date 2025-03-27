@@ -24,7 +24,8 @@ initInjector(){
   injector.registerFactory<HomeBloc>(() => HomeBloc());
   injector.registerLazySingleton<HomeRouter>(() => HomeRouter());
   injector.registerFactory<NotificationBloc>(() => NotificationBloc());
-  injector.registerLazySingleton<BaseRouter>(() => NotificationRouter());
+  injector.registerFactory<NotificationRouter>(() => NotificationRouter());
+
   injector.registerLazySingleton<SettingCache>(
         () => SettingCacheImpl(injector<LocalDataStorage>()),
   );/// đăng ký trước

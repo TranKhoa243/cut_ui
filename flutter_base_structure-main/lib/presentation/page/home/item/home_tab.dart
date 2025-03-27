@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base_structure/presentation/base/base_router.dart';
 import 'package:flutter_base_structure/presentation/page/home/item/device_utils.dart';
+import 'package:flutter_base_structure/presentation/page/notification/notification_page.dart';
 import 'package:flutter_base_structure/presentation/resources/icons/app_images.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -79,6 +81,7 @@ class HomeTab extends StatelessWidget {
                     const Gap(8),
                     InkWell(
                       onTap: () {
+                        navigator.materialPush(context: context, page: NotificationPage(tag: PageTag.notification));
                       },
                       child: Container(
                         padding: const EdgeInsets.all(4),

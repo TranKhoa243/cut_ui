@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_structure/presentation/base/base_bloc.dart';
-import 'package:flutter_base_structure/presentation/base/base_event.dart';
-import 'package:flutter_base_structure/presentation/base/base_page.dart';
-import 'package:flutter_base_structure/presentation/base/base_state.dart';
-import 'package:flutter_base_structure/presentation/page/home/home_bloc.dart';
-import 'package:flutter_base_structure/presentation/page/home/home_router.dart';
-import 'package:flutter_base_structure/presentation/page/home/home_state.dart';
 import 'package:flutter_base_structure/presentation/resources/icons/app_images.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import '../../base/index.dart';
+import 'index.dart';
 import 'item/home_tab.dart';
 class HomePage extends BasePage {
 

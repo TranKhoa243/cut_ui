@@ -1,4 +1,3 @@
-import 'package:flutter_base_structure/domain/model/notification_model/notification_model.dart';
 import 'package:flutter_base_structure/domain/model/notification_model/notification_model2.dart';
 import 'package:flutter_base_structure/presentation/base/index.dart';
 

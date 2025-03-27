@@ -62,7 +62,7 @@ class MyAppState extends State<MyApp> {
                   //   pageTag: PageTag.verifyphone,
                   // );
                 case AppLaunchTag.main:
-                  return  const HomePage(tag: PageTag.main);
+                  return  HomePage(tag: PageTag.main);
                 case AppLaunchTag.policy:
                   // return const PolicyPage(
                   //   pageTag: PageTag.policy,
