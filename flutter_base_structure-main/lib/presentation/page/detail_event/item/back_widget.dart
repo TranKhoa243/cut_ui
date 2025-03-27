@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_base_structure/presentation/resources/icons/app_images.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 
 class FBackWidget extends StatelessWidget {
   final VoidCallback onTap;
@@ -51,3 +53,4 @@ class FBackWidget extends StatelessWidget {
     );
   }
 }
+

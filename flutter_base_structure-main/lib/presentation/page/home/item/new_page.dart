@@ -1,8 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base_structure/presentation/navigator/page_navigator.dart';
 import 'package:flutter_base_structure/presentation/page/home/item/device_utils.dart';
 import 'package:flutter_base_structure/presentation/page/home/item/list_extension.dart';
 import 'package:gap/gap.dart';
+
+import '../../../base/base_router.dart';
+import '../../detail_event/index.dart';
 
 class EventListView extends StatelessWidget {
   const EventListView({super.key});
@@ -13,14 +17,16 @@ class EventListView extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       children: List.generate(
         5,
-            (index) => _itemStatus(),
+            (index) => _itemStatus(context),
       ).toList().separator((index) => Gap(12)),
     );
   }
-  Widget _itemStatus() {
+  Widget _itemStatus(BuildContext context) {
     return Container(// Khoảng cách giữa các item
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          navigator.materialPush(context: context, page: const DetailEventPage(tag: PageTag.detailEvent));
+        },
         child: Stack(
           children: [
             Container(

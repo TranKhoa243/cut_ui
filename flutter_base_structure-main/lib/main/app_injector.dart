@@ -17,6 +17,8 @@ import 'package:flutter_base_structure/presentation/utils/index.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
+import '../presentation/page/detail_event/index.dart';
+
 GetIt injector = GetIt.asNewInstance();
 initInjector(){
   // Utils
@@ -25,6 +27,8 @@ initInjector(){
   injector.registerLazySingleton<HomeRouter>(() => HomeRouter());
   injector.registerFactory<NotificationBloc>(() => NotificationBloc());
   injector.registerFactory<NotificationRouter>(() => NotificationRouter());
+  injector.registerFactory<DetailEventBloc>(() => DetailEventBloc());
+  injector.registerFactory<DetailEventRouter>(() => DetailEventRouter());
 
   injector.registerLazySingleton<SettingCache>(
         () => SettingCacheImpl(injector<LocalDataStorage>()),

@@ -16,6 +16,7 @@ class AppImages {
   static const icChevronLeft = 'assets/images/svg/chevron.left.svg';
   static const imgEmtyNotification = 'assets/images/emty_notification.png';
   static const icNotification = 'assets/images/svg/notification.svg';
+  static const imgBottomBgDetailEvent = 'assets/images/bottombg_detail_event.png';
 
   static const icAppLogo = 'assets/images/ic_app_logo.png';
   static const icAppLogoWhite = 'assets/images/ic_logo_white.svg';

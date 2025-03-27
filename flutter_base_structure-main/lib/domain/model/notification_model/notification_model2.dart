@@ -1,17 +1,17 @@
 class NotificationModel2 {
-  final String id;
-  final String title;
-  final String content;
-  final String type; // VD: "Tặng voucher", "Sự kiện", "Tin tức"
-  final String timeAgo; // VD: "Vừa xong", "3 ngày"
+  final String? id;
+  final String? title;
+  final String? content;
+  final String? type; // VD: "Tặng voucher", "Sự kiện", "Tin tức"
+  final String? timeAgo; // VD: "Vừa xong", "3 ngày"
   final String? tagColor; // Màu của tag (nếu có)
 
   NotificationModel2({
-    required this.id,
-    required this.title,
-    required this.content,
-    required this.type,
-    required this.timeAgo,
+     this.id,
+     this.title,
+     this.content,
+     this.type,
+     this.timeAgo,
     this.tagColor,
   });
 

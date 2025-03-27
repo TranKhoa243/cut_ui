@@ -15,10 +15,8 @@ class NotificationPage extends BasePage {
   State<NotificationPage> createState() => _NotificationPageState();
 }
 
-class _NotificationPageState extends BasePageState<
-    NotificationBloc,
-    NotificationPage,
-    NotificationRouter> {
+class _NotificationPageState extends BasePageState<NotificationBloc,
+    NotificationPage, NotificationRouter> {
   StreamSubscription? _appEventSub;
 
   @override
@@ -26,11 +24,11 @@ class _NotificationPageState extends BasePageState<
     _appEventSub?.cancel();
     super.dispose();
   }
+
   @override
   void initState() {
     super.initState();
     _appEventSub?.cancel();
-
     _appEventSub = applicationBloc.broadcastEventStream.listen((event) {
       if (event is ReloadLinkedCardEvent) {
         bloc.dispatchEvent(GetNotificationEvent());
@@ -38,36 +36,73 @@ class _NotificationPageState extends BasePageState<
     });
   }
 
+  Widget _buildTypeEvent(String type) {
+    final Map<String, String> typeTranslations = {
+      'give': 'Tặng voucher',
+      'event': 'Sự kiện',
+      'news': 'Tin tức',
+    };
+
+    final Map<String, Color> typeColors = {
+      'give': Colors.blue,
+      'event': Colors.orange,
+      'news': Colors.red,
+    };
+
+    final String translatedType = typeTranslations[type] ?? type;
+    final Color backgroundColor = typeColors[type] ?? Colors.transparent;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: backgroundColor, width: 1)),
+      child: Text(
+        '# $translatedType',
+        style: TextStyle(color: backgroundColor),
+      ),
+    );
+  }
+
   Widget _buildNotificationList(List<NotificationModel2> notifications) {
     return ListView.separated(
       padding: const EdgeInsets.only(top: 16),
       itemCount: notifications.length,
-      separatorBuilder: (_, __) => const Divider(height: 1),
+      separatorBuilder: (_, __) => const Gap(0),
       itemBuilder: (context, index) {
         final item = notifications[index];
-        return ListTile(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          title: Text(
-            item.title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-          subtitle: Text(item.content),
-          trailing: Text(
-            item.timeAgo,
-            style: const TextStyle(color: Colors.grey),
-          ),
-          leading: Container(
-            width: 12,
-            height: 12,
-            decoration: BoxDecoration(
-              color: Color(int.parse("0xFF${item.tagColor?.substring(1)}")),
-              shape: BoxShape.circle,
-            ),
-          ),
-        );
+        return Container(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildTypeEvent(item.type ?? ''),
+                    Text(
+                      item.timeAgo ?? '',
+                      style: const TextStyle(color: Colors.grey, fontSize: 12),
+                    )
+                  ],
+                ),
+                const Gap(8),
+                Text(
+                  item.title ?? '',
+                  style: const TextStyle(fontSize: 14),
+                ),
+                const Gap(1),
+                Text(
+                  item.content ?? '',
+                  style: const TextStyle(color: Colors.grey, fontSize: 12),
+                ),
+                Gap(index == notifications.length - 1 ? 16 : 0)
+              ],
+            ));
       },
     );
   }
+
   Widget _buildEmptyNotification() {
     return Center(
       child: Column(
@@ -94,9 +129,13 @@ class _NotificationPageState extends BasePageState<
       ),
     );
   }
+
   Widget _buildNotificationBody(NotificationState state) {
     if (state is NotificationLoading) {
-      return const Center(child: CircularProgressIndicator());
+      return const Center(
+          child: CircularProgressIndicator(
+        color: Colors.redAccent,
+      ));
     } else if (state is NotificationLoadError) {
       return Center(
         child: Column(
@@ -122,7 +161,6 @@ class _NotificationPageState extends BasePageState<
     }
   }
 
-
   @override
   Widget buildLayout(
       BuildContext context, BaseBloc<BaseEvent, BaseState> bloc) {
@@ -131,15 +169,19 @@ class _NotificationPageState extends BasePageState<
         return Scaffold(
           body: Container(
             color: const Color(0xFFFCFCFC),
-            padding: EdgeInsets.fromLTRB(16, MediaQuery.of(context).padding.top, 16, 0),
+            padding: EdgeInsets.fromLTRB(
+                16, MediaQuery.of(context).padding.top, 16, 0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Row(
                   children: [
-                    FBackWidget(onTap: (){
-                      context.read<NotificationRouter>().onNavigateByEvent(context: context, event: NotificationBackEvent());
-                    },),
+                    FBackWidget(
+                      onTap: () {
+                        context.read<NotificationRouter>().onNavigateByEvent(
+                            context: context, event: NotificationBackEvent());
+                      },
+                    ),
                     const Gap(16),
                     const Text(
                       'Thông báo',
@@ -148,7 +190,7 @@ class _NotificationPageState extends BasePageState<
                   ],
                 ),
                 Expanded(
-                  child: _buildNotificationBody(state), // Gọi hàm xử lý UI theo state
+                  child: _buildNotificationBody(state),
                 ),
               ],
             ),
@@ -156,7 +198,5 @@ class _NotificationPageState extends BasePageState<
         );
       },
     );
-
   }
 }
-

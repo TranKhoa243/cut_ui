@@ -66,4 +66,5 @@ enum PageTag {
   qrScan,
   optionsScanNfcPage,
   qrScanNfcPage,
+  detailEvent
 }

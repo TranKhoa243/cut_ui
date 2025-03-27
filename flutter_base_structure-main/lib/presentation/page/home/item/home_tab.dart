@@ -81,7 +81,7 @@ class HomeTab extends StatelessWidget {
                     const Gap(8),
                     InkWell(
                       onTap: () {
-                        navigator.materialPush(context: context, page: NotificationPage(tag: PageTag.notification));
+                        navigator.materialPush(context: context, page: const NotificationPage(tag: PageTag.notification));
                       },
                       child: Container(
                         padding: const EdgeInsets.all(4),
