@@ -7,6 +7,8 @@ class AppImages {
   static const icMember = 'assets/images/svg/member.svg';
   static const icBox = 'assets/images/svg/box.svg';
   static const icNavigation = 'assets/images/svg/navigation.svg';
+  static const icBag_2 = 'assets/images/svg/bag-2.svg';
+  static const icLocation = 'assets/images/svg/location.svg';
   static const icAdd = 'assets/images/svg/add.svg';
   static const icArrowRight2 = 'assets/images/svg/arrow_right2.svg';
   static const icNavigation2 = 'assets/images/svg/navigation.svg';
@@ -14,9 +16,12 @@ class AppImages {
   static const icTicketStar= 'assets/images/svg/ticket_star.svg';
   static const icBannerHome = 'assets/images/banner_home1.png';
   static const icChevronLeft = 'assets/images/svg/chevron.left.svg';
+  static const icMap2 = 'assets/images/svg/map_ic.svg';
   static const imgEmtyNotification = 'assets/images/emty_notification.png';
   static const icNotification = 'assets/images/svg/notification.svg';
   static const imgBottomBgDetailEvent = 'assets/images/bottombg_detail_event.png';
+  static const icCalendar = 'assets/images/svg/calendar.svg';
+  static const imgBgPlace = 'assets/images/bg_place.png';
 
   static const icAppLogo = 'assets/images/ic_app_logo.png';
   static const icAppLogoWhite = 'assets/images/ic_logo_white.svg';

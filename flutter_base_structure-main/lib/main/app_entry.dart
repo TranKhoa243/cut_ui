@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_structure/presentation/page/home/home_page.dart';
 import 'package:flutter_base_structure/presentation/page/home/item/device_utils.dart';
+import 'package:flutter_base_structure/presentation/page/home/item/routes.dart';
 import 'package:flutter_base_structure/presentation/page/notification/notification_page.dart';
 import 'package:flutter_base_structure/presentation/page/splash/splash_page.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -47,6 +48,7 @@ class MyAppState extends State<MyApp> {
     DeviceUtils.init(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorKey: CoreRoutes.navigatorKey!,
       theme: ThemeData(
         textSelectionTheme: const TextSelectionThemeData(
             selectionHandleColor: Colors.transparent),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base_structure/presentation/page/home/item/place_tab.dart';
 import 'package:flutter_base_structure/presentation/resources/icons/app_images.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,7 +26,7 @@ class _HomePageState extends BasePageState<
         case 0:
           return const HomeTab();
         case 1:
-          return const Icon(Icons.home);
+          return const PlaceTab();
         case 2:
           return const ElevatedButton(onPressed: null, child: Text('Button'));
         case 3:
